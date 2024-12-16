@@ -9,4 +9,8 @@ router.get('/rooms', roomControllers.getAllRooms);
 
 router.get('/rooms/:id', roomControllers.getSingleRooms);
 
+router.put('/rooms/:id', roomControllers.updateRoom);
+
+router.delete('/rooms/:id', roomControllers.deleteRoom);
+
 export const roomRoutes = router;
