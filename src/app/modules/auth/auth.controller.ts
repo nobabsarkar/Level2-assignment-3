@@ -7,11 +7,17 @@ import config from '../../config';
 const signUp = catchAsync(async (req, res) => {
   const result = await AuthService.singUp(req.body);
 
+  const userData = {
+    ...result.toObject(),
+  };
+
+  delete userData.password;
+
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
     message: 'User registred successfully!',
-    data: result,
+    data: userData,
   });
 });
 
