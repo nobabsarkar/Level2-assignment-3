@@ -6,7 +6,7 @@ import { UserControllers } from './user.controller';
 const router = express.Router();
 
 // router.post(
-//   '/signup',
+//   '/create-admin',
 //   validateRequest(userValidations.userValidationSchema),
 //   UserControllers.createUser
 // );
