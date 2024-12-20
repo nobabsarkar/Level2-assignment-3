@@ -1,5 +1,6 @@
 import { model, Schema } from 'mongoose';
 import { Tuser } from './user.interface';
+import { USER_Role } from './user.constant';
 
 const userSchema = new Schema<Tuser>({
   name: { type: String, required: [true, 'Name is Required'] },
@@ -13,7 +14,8 @@ const userSchema = new Schema<Tuser>({
   address: { type: String, required: [true, 'Address is Required'] },
   role: {
     type: String,
-    enum: ['user', 'admin'],
+    required: [true, 'Role is required'],
+    enum: Object.keys(USER_Role.USER),
   },
 });
 

@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { USER_Role } from './user.constant';
 
 const userValidationSchema = z.object({
   body: z.object({
@@ -7,7 +8,7 @@ const userValidationSchema = z.object({
     password: z.string(),
     phone: z.string(),
     address: z.string(),
-    role: z.enum(['user', 'admin']).default('user'),
+    role: z.nativeEnum(USER_Role).default(USER_Role.USER),
   }),
 });
 

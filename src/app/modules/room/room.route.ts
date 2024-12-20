@@ -11,10 +11,7 @@ router.post(
   '/rooms',
   (req, res, next) => {
     const token = req.headers.authorization;
-    // const verifyedToken = jwt.verify(
-    //   token as string,
-    //   config.jwt_access_secret as string
-    // );
+
     const verifyedToken = jwt.verify(
       token as string,
       config.jwt_access_secret as string
