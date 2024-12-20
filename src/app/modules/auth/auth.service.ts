@@ -1,11 +1,11 @@
 import config from '../../config';
-import { Role } from '../user/user.constant';
 import { Tuser } from '../user/user.interface';
 import { User } from '../user/user.model';
 import jwt from 'jsonwebtoken';
 import { TLogin } from './auth.interface';
 import AppError from '../../errors/AppError';
 import { StatusCodes } from 'http-status-codes';
+import { USER_Role } from '../user/user.constant';
 
 const singUp = async (payload: Tuser) => {
   const user = await User.findOne({ email: payload.email });
@@ -14,7 +14,7 @@ const singUp = async (payload: Tuser) => {
   }
 
   // set user role
-  payload.role = Role.user;
+  payload.role = USER_Role.USER;
 
   const newUser = await User.create(payload);
   return newUser;
