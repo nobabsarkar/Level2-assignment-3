@@ -4,6 +4,6 @@ export type Tuser = {
   password: string;
   phone: string;
   address: string;
-  role: 'USER' | 'ADMIN';
+  role: 'user' | 'admin';
   // role: keyof typeof USER_Role.USER;
 };

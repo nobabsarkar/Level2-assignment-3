@@ -14,7 +14,7 @@ const singUp = async (payload: Tuser) => {
   }
 
   // set user role
-  payload.role = USER_Role.USER;
+  // payload.role = USER_Role.USER;
 
   const newUser = await User.create(payload);
   return newUser;
