@@ -20,10 +20,11 @@ router.get('/rooms/:id', roomControllers.getSingleRooms);
 
 router.put(
   '/rooms/:id',
+  auth(USER_Role.admin),
   validateRequest(roomValidations.updateRoomValidationSchema),
   roomControllers.updateRoom
 );
 
-router.delete('/rooms/:id', roomControllers.deleteRoom);
+router.delete('/rooms/:id', auth(USER_Role.admin), roomControllers.deleteRoom);
 
 export const roomRoutes = router;
