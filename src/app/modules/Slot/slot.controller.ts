@@ -6,7 +6,7 @@ const createSlot = catchAsync(async (req, res) => {
   res.status(200).json({
     success: true,
     message: 'Slots created successfully',
-    data: result,
+    data: [result],
   });
 });
 

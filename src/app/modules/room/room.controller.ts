@@ -15,6 +15,16 @@ const createRoom = catchAsync(async (req, res) => {
 
 const getAllRooms = catchAsync(async (req, res) => {
   const result = await roomServices.getAllRoomFromDB();
+
+  if (!result || result.length === 0) {
+    res.status(404).json({
+      success: false,
+      statusCode: 404,
+      message: 'No Data Found',
+      data: result,
+    });
+  }
+
   sendResponse(res, {
     statusCode: StatusCodes.OK,
     success: true,
