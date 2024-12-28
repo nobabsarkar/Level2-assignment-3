@@ -6,6 +6,12 @@ const createSlotIntoDB = async (payload: TSlot) => {
   return result;
 };
 
+const getAllSlotFromDB = async () => {
+  const result = await Slot.find().populate('room');
+  return result;
+};
+
 export const SlotServices = {
   createSlotIntoDB,
+  getAllSlotFromDB,
 };
