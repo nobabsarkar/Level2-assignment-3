@@ -38,12 +38,12 @@ export const auth = (...requiredRoles: (keyof typeof USER_Role)[]) => {
       );
     }
 
-    if (role !== 'admin') {
-      throw new AppError(
-        StatusCodes.UNAUTHORIZED,
-        'You are not authorized to create admin'
-      );
-    }
+    // if (role !== 'admin') {
+    //   throw new AppError(
+    //     StatusCodes.UNAUTHORIZED,
+    //     'You are not authorized to create admin'
+    //   );
+    // }
 
     if (!requiredRoles.includes(role)) {
       throw new AppError(
