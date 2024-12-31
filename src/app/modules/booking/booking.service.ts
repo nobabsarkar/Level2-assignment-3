@@ -6,6 +6,31 @@ const createBookingIntoDB = async (payload: TBooking) => {
   return result;
 };
 
+const getAllBookingFromDB = async () => {
+  const result = await Booking.find()
+    .populate('slot')
+    .populate('room')
+    .populate('user');
+  return result;
+};
+
+const getAllUserBooking = async () => {
+  const result = await Booking.find().populate('slot').populate('room');
+  return result;
+};
+
+const deleteBookingIntoDB = async (id: string) => {
+  const result = await Booking.findByIdAndUpdate(
+    id,
+    { isDeleted: true },
+    { new: true }
+  );
+  return result;
+};
+
 export const BookingServices = {
   createBookingIntoDB,
+  getAllBookingFromDB,
+  getAllUserBooking,
+  deleteBookingIntoDB,
 };

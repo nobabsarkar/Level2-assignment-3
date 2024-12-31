@@ -1,7 +1,10 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { StatusCodes } from 'http-status-codes';
 import catchAsync from '../../utils/catchAsync';
 import sendResponse from '../../utils/sendResponse';
 import { Booking } from './booking.model';
+import { BookingServices } from './booking.service';
 
 const createBooking = catchAsync(async (req, res) => {
   const { date, room, slot, totalAmount, user, isConfirmed, isDeleted } =
@@ -32,6 +35,48 @@ const createBooking = catchAsync(async (req, res) => {
   });
 });
 
+const getAllBooking = catchAsync(async (req, res) => {
+  const result = await BookingServices.getAllBookingFromDB();
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'All booking retrieved succeessfully',
+    data: result,
+  });
+});
+
+const getAllUserBooking = catchAsync(async (req, res) => {
+  const result = await BookingServices.getAllUserBooking();
+
+  const withOutUserData = result.map((booking) => {
+    const { user, ...rest } = booking._doc;
+    return rest;
+  });
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'User bookings retrieved successfully',
+    data: withOutUserData,
+  });
+});
+
+const deleteBooking = catchAsync(async (req, res) => {
+  const { id } = req.params;
+  const result = await BookingServices.deleteBookingIntoDB(id);
+
+  sendResponse(res, {
+    statusCode: StatusCodes.OK,
+    success: true,
+    message: 'Booking deleted successfully',
+    data: result,
+  });
+});
+
 export const BookingControllers = {
   createBooking,
+  getAllBooking,
+  getAllUserBooking,
+  deleteBooking,
 };
