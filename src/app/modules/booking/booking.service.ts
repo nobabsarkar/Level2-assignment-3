@@ -19,12 +19,18 @@ const getAllUserBooking = async () => {
   return result;
 };
 
+const updateBookingIntoDB = async (id: string, payload: Partial<TBooking>) => {
+  const result = await Booking.findByIdAndUpdate(id, payload, { new: true });
+  return result;
+};
+
 const deleteBookingIntoDB = async (id: string) => {
   const result = await Booking.findByIdAndUpdate(
     id,
     { isDeleted: true },
     { new: true }
   );
+
   return result;
 };
 
@@ -33,4 +39,5 @@ export const BookingServices = {
   getAllBookingFromDB,
   getAllUserBooking,
   deleteBookingIntoDB,
+  updateBookingIntoDB,
 };

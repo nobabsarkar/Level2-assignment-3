@@ -24,6 +24,12 @@ router.get(
   BookingControllers.getAllUserBooking
 );
 
+router.put(
+  '/bookings/:id',
+  auth(USER_Role.admin),
+  BookingControllers.updateBooking
+);
+
 router.delete(
   '/bookings/:id',
   auth(USER_Role.admin),

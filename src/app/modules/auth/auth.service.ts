@@ -5,7 +5,6 @@ import jwt from 'jsonwebtoken';
 import { TLogin } from './auth.interface';
 import AppError from '../../errors/AppError';
 import { StatusCodes } from 'http-status-codes';
-import { USER_Role } from '../user/user.constant';
 
 const singUp = async (payload: Tuser) => {
   const user = await User.findOne({ email: payload.email });
@@ -38,13 +37,7 @@ const login = async (payload: TLogin) => {
   const userData = {
     ...data.toObject(),
   };
-
   delete userData.password;
-
-  // const passwordMatch = await isPasswordMatched(
-  //   payload.password,
-  //   user.password
-  // );
 
   const token = jwt.sign(jwtPayload, config.jwt_access_secret as string, {
     expiresIn: config.jwt_access_expires_in,
